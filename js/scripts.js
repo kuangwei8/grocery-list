@@ -1,20 +1,22 @@
-$(document).ready(function(){
+$(document).ready(function() {
+  $("form").submit(function(event) {
+    var items = ["input1", "input2","input3"];
+    var shoppingList =[];
 
+    items.map(function(item) {
 
-  //
-  // $("p").click(function(event) {
-  //   alert("You clicked on par");
-  //
-  // $("img").click(function(event) {
-  //   alert("You clicked on pic");
-
-  var elements = ["h1","p", "img"];
-  elements.forEach(function(element){
-    $(element).click(function() {
-
-      alert("You clicked on " + element);
-
-
+      var userInput = $("input#"+ item).val();
+      shoppingList.push(userInput.toUpperCase());
       });
-    });
+
+      shoppingList.sort();
+
+      shoppingList.forEach(function(list){
+          $("#list1").append("<li>" + list + "</li>");
+      });
+      $("form").hide();
+
+      event.preventDefault();
+
   });
+});
